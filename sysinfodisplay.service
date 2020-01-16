@@ -1,0 +1,13 @@
+[Unit]
+Description=display system information on mini I2C OLED display
+After=local-fs.target
+
+[Service]
+Type=simple
+EnvironmentFile=
+ExecStart=/usr/bin/sysinfodisplay.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

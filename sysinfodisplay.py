@@ -32,6 +32,8 @@ def signal_handler(sig, frame):
         print("\nApplication terminated with Ctrl+C.")
         sys.exit(0)
 
+drawfont = "/usr/share/fonts/ttf/pixelmix.ttf"
+
 try:
     signal.signal(signal.SIGINT, signal_handler)
     serial = i2c(port=1, address=0x3C)
@@ -40,10 +42,10 @@ try:
     while True:
         with canvas(device) as draw:
             draw.rectangle(device.bounding_box, outline="white", fill="black")
-            font = ImageFont.truetype('./pixelmix.ttf', 10)
+            font = ImageFont.truetype(drawfont, 10)
             ip = getIP()
             draw.text((5, 5), "IP: " + ip, fill="white", font=font)
-            font = ImageFont.truetype('./pixelmix.ttf', 16)
+            font = ImageFont.truetype(drawfont, 16)
             statusHomeBridge = getServiceStatus("homebridge")
             draw.text((5, 20), "HB: " + statusHomeBridge, fill="white", font=font)
             statusMQTT = getServiceStatus("mosquitto")

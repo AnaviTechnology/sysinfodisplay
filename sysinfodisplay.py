@@ -53,7 +53,10 @@ try:
     sleep(1)
 except DeviceNotFoundError:
     print("I2C mini OLED display not found.")
+    sys.exit(1)
 except SystemExit:
     print("Exiting...")
+    sys.exit(0)
 except:
     print("Unexpected error:", sys.exc_info()[0])
+    sys.exit(2)
